@@ -12,12 +12,13 @@ module Luis
 
   include HTTParty
   class << self
-   attr_accessor :id, :subscription_key, :is_preview_mod, :is_verbose
+   attr_accessor :api_base_uri, :id, :subscription_key, :is_preview_mod, :is_verbose
   end
-  API_BASE_URI = 'https://api.projectoxford.ai/luis/v1/application'.freeze
+
+  API_BASE_URI = 'https://api.projectoxford.ai/luis/v1/application'
 
   def self.api_uri
-    uri = API_BASE_URI
+    uri = api_base_uri || API_BASE_URI
     uri += '/preview' if is_preview_mod
     uri
   end
